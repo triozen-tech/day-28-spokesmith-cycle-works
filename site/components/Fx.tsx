@@ -73,7 +73,7 @@ export default function Fx() {
       // JOIN TRANSITIONS (X): a yellow wipe or tape strip crosses as you leave a section, under 0.6 s, never blocks scroll
       const layer = document.createElement("div");
       layer.setAttribute("aria-hidden", "true");
-      layer.style.cssText = "position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden";
+      layer.style.cssText = "position:fixed;inset:0;z-index:55;pointer-events:none;overflow:hidden;visibility:hidden;opacity:0";
       document.body.appendChild(layer);
       kill.push(() => layer.remove());
       const mk = (css: string, html = "") => { const d = document.createElement("div"); d.style.cssText = `position:absolute;${css}`; d.innerHTML = html; layer.appendChild(d); return d; };
@@ -91,15 +91,38 @@ export default function Fx() {
       const topH = mk("left:0;top:0;width:100%;height:50%;background:#ffd500;border-bottom:6px solid #0b0b0b;transform:translateY(-101%)");
       const botH = mk("left:0;bottom:0;width:100%;height:50%;background:#ffd500;border-top:6px solid #0b0b0b;transform:translateY(101%)");
 
+      // every strip rests hidden and off-screen; the layer is only visible while a transition plays
+      const strips = [x34, tape, x56, x33, topH, botH];
+      let current: gsap.core.Timeline | null = null;
       let busy = false, armed = false;
-      const off = onSiteReady(() => setTimeout(() => (armed = true), 600));
+      const rest = () => {
+        const old = current;
+        current = null;
+        busy = false;
+        old?.kill();
+        gsap.set([x34, x56], { x: "-300%", scale: 1 });
+        gsap.set(tape, { x: "300%" });
+        gsap.set(x33, { scale: 0.1, opacity: 0 });
+        gsap.set(topH, { y: "-200%" });
+        gsap.set(botH, { y: "200%" });
+        gsap.set(strips, { visibility: "hidden" });
+        gsap.set(layer, { autoAlpha: 0 });
+      };
+      rest();
+      kill.push(() => current?.kill());
+      const off = onSiteReady(() => { rest(); setTimeout(() => (armed = true), 600); });
       kill.push(off);
       const play = (build: (tl: gsap.core.Timeline, back: boolean) => void) => (back: boolean) => {
-        if (!armed || busy) return;
+        if (!armed || busy || window.scrollY < 120) return;
         busy = true;
-        const tl = gsap.timeline({ onComplete: () => { busy = false; } });
+        gsap.set(layer, { autoAlpha: 1 });
+        gsap.set(strips, { visibility: "visible" });
+        const tl = gsap.timeline({ onComplete: rest });
+        current = tl;
         build(tl, back);
       };
+      // nothing from any transition may show at the top of the page
+      ScrollTrigger.create({ start: 0, end: "max", onUpdate: (self) => { if (busy && self.scroll() < 120) rest(); } });
       const join = (target: string, fn: (back: boolean) => void) => ScrollTrigger.create({ trigger: target, start: "top 62%", onEnter: () => fn(false), onEnterBack: () => fn(true) });
 
       join("#browse", play((tl, back) => {

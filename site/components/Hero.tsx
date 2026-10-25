@@ -42,7 +42,7 @@ export default function Hero() {
       flip = gsap.timeline()
         .to(cur, { rotationX: -90, yPercent: -25, autoAlpha: 0, duration: 0.3, ease: "power2.in" }, 0)
         .fromTo(nxt, { rotationX: 90, yPercent: 25, autoAlpha: 0 }, { rotationX: 0, yPercent: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" }, 0.25)
-        .to(slot, { width: () => nxt.offsetWidth, duration: 0.45, ease: "power3.inOut" }, 0.1)
+        .to(slot, { width: () => Math.ceil(parseFloat(getComputedStyle(nxt).width)), duration: 0.45, ease: "power3.inOut" }, 0.1)
         .add(() => mark(at), 0.25);
     };
     const tl = gsap.timeline({ repeat: -1, paused: true });
@@ -73,7 +73,6 @@ export default function Hero() {
       <div className="absolute inset-0" style={{ background: "linear-gradient(95deg, rgba(11,11,11,.9) 0%, rgba(11,11,11,.72) 45%, rgba(11,11,11,.12) 100%)" }} />
       <SpokeWheel className="absolute left-[880px] top-[200px] h-[560px] w-[560px]" />
       <div className="sm-wrap relative z-10 flex h-full flex-col justify-end pb-[110px]">
-        <p className="sm-eyebrow mb-8 inline-block self-start border-4 border-[#ffd500] px-4 py-2">Spokesmith Cycle Works · Est. on Foundry Lane</p>
         <h1 className="sm-display leading-[1.02]">
           <span className="block text-[88px]">Every bike,</span>
           <span className="sm-slot mt-3 text-[112px]" data-slot>

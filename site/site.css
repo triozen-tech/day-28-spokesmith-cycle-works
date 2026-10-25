@@ -65,9 +65,9 @@ html, body { overflow-x: clip; }
   a:hover .sm-roll > span, button:hover .sm-roll > span, .is-hover .sm-roll > span { transform: translateY(-100%); }
 
   /* hero */
-  .sm-slot { display: inline-block; position: relative; overflow: hidden; vertical-align: top; background: var(--yellow); color: var(--ink); box-shadow: 10px 10px 0 var(--paper); }
+  .sm-slot { display: inline-block; position: relative; overflow: hidden; vertical-align: top; background: var(--yellow); color: var(--ink); }
   .sm-slot-word { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 0.06em 0.22em 0.02em; }
-  .sm-slot-first { position: relative; display: block; }
+  .sm-slot-first { position: relative; display: inline-block; }
   .sm-tag { color: var(--yellow); }
   .sm-tag.on { background: var(--yellow); color: var(--ink); }
 
