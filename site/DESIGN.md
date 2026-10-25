@@ -1,25 +1,100 @@
-# DESIGN.md
-
 **Mode: Pro**
 
-Round 0 of `/new-site` writes today's design direction, section plan, Motion map and asset plan here.
-Claude Code never writes Flow/Veo prompts (see "Prompts (as run)" below).
+# Day 28 · Spokesmith Cycle Works · design direction (Round 0)
 
-## Clip table (video-first sites)
+Fictional bicycle workshop: tunes, repairs, builds. Business site, desktop 1440×900 only. Sample prices in ₹, labelled "sample". Traveling object: —. Layout chosen: **A "Hi-Vis Floor"** (recommended; the user confirms in the Round 0 review). 6+ of 8 menu choices differ from each of the last 3 sites, see the sites log. Claude Code never writes Flow/Veo prompts.
 
-Clips play one after another along the page scroll (`lib/chain.ts`, `components/video/FrameScrub.tsx`). Keyframe stills join the clips, so every video runs in one batch.
+## Choices
 
-| Clip | Start keyframe | End keyframe | Hover | Scroll rule |
-|---|---|---|---|---|
-| V1 | K1 | K2 | | e.g. pinned 5 screens, eased, idle breath |
-| V2 | K2 | K3 | | |
+| Menu | Choice | Reason |
+|---|---|---|
+| Look | L7 street / brutalist, hi-vis workshop signage | Loud and graphic: hard edges, thick borders, hazard tape |
+| Palette | Hi-vis graphite: yellow `#FFD500` (bg + accent), graphite `#2B2D2F` bands, ink `#0B0B0B` text, paper `#F4F1E6` | One accent (yellow); black on yellow and yellow on graphite both pass contrast |
+| Type pair | T28 Lexend Mega (display, caps) + Public Sans (body) | Wide, heavy and sign-like; never used before |
+| Nav | NV08 box-grid menu; hover U17 rolling letters | Opens a 6-box grid like a tool board |
+| Hero | HR32 flip-word slot (TUNE / REPAIR / BUILD) over a drivetrain loop | New to the kit's history; not a portal |
+| Section shape | S10 stepped edges + hazard-tape joins | Hard cuts between yellow and graphite |
+| Card | C10 spec sheet, thick border, hard offset shadow | Reads like a workshop job sheet |
+| Loader | I35 block wordmark sting | Hard yellow blocks wipe in the wordmark |
+| Signature | "True the Wheel" | Natural step count and a visible change |
 
-## Asset batch table
+## Section plan and Motion map
 
-| ID | Name | Ratio | Save as | Attach | Code fallback |
+Order follows the standing rule. 9 sections plus loader and nav. No layout or motion code is used twice. References: ours / pending inbox.
+
+| # | Section | Layout | Moments | Motion | Record mode |
 |---|---|---|---|---|---|
-| K1 | | 16:9 | `raw/k1.png` | – | |
-| V1 | | 16:9 | `raw/v1.mp4` | K1 + K2 | |
+| 0 | Loader | I35 | 1, 14 | I35 block wordmark sting | plays once, ~2 s |
+| 0 | Nav | NV08 | — | U17 rolling letters on hover | static bar |
+| 1 | Hero | HR32 | 4, 2, 11 | M369 slot-strip shuffle on the word; V1 loops behind | plays by itself |
+| 2 | Browse (what we fix) | PS22 | 3, 4, 5, 7, 8, 9, 12 | M429 tile rows slide opposite ways; tiles loop macro films | plays by itself |
+| 3 | Shop (bikes and parts) | PS15 | 11, 12, 10 | M438 3D grid fly-in; filter chips re-sort | 2 hover stops |
+| 4 | Compare (Basic / Full / Overhaul) | PR05 | 2, 3 | M306 centre-out cut reveal | plays by itself |
+| 5 | Book (week strip, slot chips) | BK05 | 1, 14 | U37 auto-advancing tabs | strip advances; 1 click demo |
+| 6 | Story (the bench) | SY09 | 15, 1, 10 | M419 sticky split image scale-swap | scrubbed by scroll |
+| 7 | Signature · True the Wheel | VD03 | 5, 6 | new code M951 (added to MOTION-MENU in Round 2) | pinned, auto-steps |
+| 8 | Process (frame to finished) | PD08 | 11, 13, 10, 14 | M457 path draws, milestones pop | plays by itself |
+| 9 | Footer | FO08 | 15 | M397 velocity marquee on hazard tape | marquee runs |
+
+**Transitions (X, finalised in Round 3):** hero→browse X34 kinetic type wipe · browse→shop X31 slit-open · compare→book X56 skewed clip · story→signature X33 chapter scale jump · signature→process X60 split halves.
+
+**Hero candidates:** 1 HR32 flip-word slot over a drivetrain loop (**chosen**) · 2 HR38 skewed yellow plate, a built bike rolls on · 3 HR33 job-board split-flap (code only).
+
+**Signature, True the Wheel (moments 5, 6):** pinned. Five spoke-wrench steps: 2.4, 1.6, 0.9, 0.4, 0.0 mm of wobble. The dial-gauge needle and run-out trace swing less each step, the spoke being turned lights up, and the wheel settles and spins true on 0.0. Works at any scroll speed and stays alive when stopped. Film V2 sits under a code-drawn gauge. Code fallback: all-SVG wheel (32 spokes).
+
+## Hover map
+
+| Element | Hover effect | `data-hover-demo` |
+|---|---|---|
+| First shop card | photo swaps to a detail shot, price slides up | yes |
+| Frame-colour swatch | pixel-aligned still swap | `click` |
+| Add to cart | U65 fly-to-cart arc, count bump | `click` |
+| Browse tile | U81 flip to the job's price | yes |
+| Booking slot chip | sliding highlight | `click` |
+| Primary button | U97 glint swipe | — |
+| Nav item | U17 rolling letters | — |
+
+5 `data-hover-demo` moments (rule: ≥ 3). Each U code is used once.
+
+## Product detail plan (picks: ours / pending inbox)
+
+- Frame-colour swatches swap pixel-aligned stills (shop quick-look).
+- S / M / L / XL size chips with a sliding Flip highlight.
+- Hover loupe on a component close-up.
+- Sticky buy box inside the quick-look panel.
+- Add-to-cart animation flying to the cart with a count bump.
+
+## Reel time table (total 37.5 s)
+
+Loader 2.0 · Hero 4.0 · Browse 3.0 · Shop 5.0 (2 hover stops) · Compare 3.0 · Book 3.5 · Story 3.0 · Signature 8.0 · Process 3.5 · Footer 2.5.
+
+## Assets (video-first: 4 films, 1 master still)
+
+| ID | What | Use | Size / type | Flow edit attaches | Source | Code fallback |
+|---|---|---|---|---|---|---|
+| V1 | Drivetrain macro loop (chain, cassette, no text) | Hero background | mp4 1920×1080, loop | — | Flow/Veo: real metal motion | Code-animated SVG chain and sprocket |
+| V2 | Wheel in a truing stand, front-on | Signature | mp4 1920×1080 → frames by video time | — | Flow/Veo: real wheel wobble can't be faked | All-SVG wheel, 32 spokes |
+| V3 | Slow dolly along the bench and pegboard, no people | Story | mp4 1920×1080 | — | Flow/Veo | Stills with a code push-in |
+| V4 | 3 short macro loops: brake disc, gears, tyre | Browse tiles | mp4 1280×720 ×3 | — | Flow/Veo | Stills |
+| S1 | Master bike, blank frame, no logos | Shop master, process | jpg 2400×1600 | — (the master) | Flow | Code-drawn SVG bike |
+| S2–S8 | Other bikes and parts | Shop cards, quick-look | jpg 2400×1600 | S1 only | Flow edit | SVG placeholders |
+| P1–P3 | Frame-colour cut-outs | Colour swatches | png (cut-out, user supplied) | — | User; colours built in code | Hue-shifted SVG |
+
+Everything else is code: gauge, hazard tape, job tags, tables, week strip, step rail. **No Blender** (no turntable signature).
+
+## Notes for the build
+
+- Fonts: `@fontsource-variable/lexend-mega`, `@fontsource-variable/public-sans`.
+- Desktop only, no media queries; `?static=1` shows every section in its final state.
+- M951 and the VD03 signature variant are added to MOTION-MENU / SECTION-MENU in Round 2.
+- Footer note: "Concept website by Triozen".
+
+## Brand check and no-gos
+
+- "Spokesmith": no exact business found in 3 text searches. Near-misses: Spokesman Professional Bicycle Works (Louisiana), Spokesman Cycles (New York), SpokeWorks, Hub and Spoke Cycleworks. Risk low to moderate; rename on request.
+- No real bicycle or component brands and no logos, decals or text on frames, tyres or cranks.
+- No faces, hands or people. No fake phone numbers or real addresses. Prices labelled "sample".
+- Hero is not a "grows to full screen" opening. No FAQ, newsletter or reviews. No Blender. No Flow/Veo prompts.
 
 ## Prompts (as run)
 
