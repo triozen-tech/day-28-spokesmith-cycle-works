@@ -32,7 +32,7 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 | 4 | Compare (Basic / Full / Overhaul) | PR05 | 2, 3 | M306 centre-out cut reveal | plays by itself |
 | 5 | Book (week strip, slot chips) | BK05 | 1, 14 | U37 auto-advancing tabs | strip advances; 1 click demo |
 | 6 | Story (the bench) | SY09 | 15, 1, 10 | M419 sticky split image scale-swap | scrubbed by scroll |
-| 7 | Signature · True the Wheel | VD03 | 5, 6 | new code M951 (added to MOTION-MENU in Round 2) | pinned, auto-steps |
+| 7 | Signature · True the Wheel | VD03 | 5, 6 | new code M951 (added to MOTION-MENU in Round 2): V2 film is a steady straight spin; a code-drawn SVG layer on top does the truing (see below) | pinned, auto-steps |
 | 8 | Process (frame to finished) | PD08 | 11, 13, 10, 14 | M457 path draws, milestones pop | plays by itself |
 | 9 | Footer | FO08 | 15 | M397 velocity marquee on hazard tape | marquee runs |
 
@@ -40,7 +40,7 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 
 **Hero candidates:** 1 HR32 flip-word slot over a drivetrain loop (**chosen**) · 2 HR38 skewed yellow plate, a built bike rolls on · 3 HR33 job-board split-flap (code only).
 
-**Signature, True the Wheel (moments 5, 6):** pinned. Five spoke-wrench steps: 2.4, 1.6, 0.9, 0.4, 0.0 mm of wobble. The dial-gauge needle and run-out trace swing less each step, the spoke being turned lights up, and the wheel settles and spins true on 0.0. Works at any scroll speed and stays alive when stopped. Film V2 sits under a code-drawn gauge. Code fallback: all-SVG wheel (32 spokes).
+**Signature, True the Wheel (moments 5, 6):** pinned. Five spoke-wrench steps: 2.4, 1.6, 0.9, 0.4, 0.0 mm of wobble. The dial-gauge needle and run-out trace swing less each step, the spoke being turned lights up, and the wheel settles and spins true on 0.0. Works at any scroll speed and stays alive when stopped. **How the settle is built (chosen: film + code overlay).** V2 is a steady, straight wheel spin, so the wobble is not in the film. Five scroll steps (also auto-advancing, any scroll speed, alive when stopped) drive one value `wobble` = 2.4 → 1.6 → 0.9 → 0.4 → 0.0 mm. It feeds three code layers over the film: (1) an SVG dial gauge whose number and needle fall to 0.0; (2) a thin yellow ghost rim ring, sized to the wheel, that swings sideways by `wobble × sin(t)` with a decaying amplitude and a caliper tip marker on it, so it visibly sways against the straight film rim and locks onto it exactly (offset forced to 0) at step 5; (3) the spoke being turned lights up on each step. The film itself is never moved, so the stand and background stay still. Why not sway the film: it would slide the whole stand with it. Why not an all-SVG wheel: the real spin is the premium part. Code fallback: all-SVG wheel (32 spokes).
 
 ## Hover map
 
@@ -73,7 +73,7 @@ Loader 2.0 · Hero 4.0 · Browse 3.0 · Shop 5.0 (2 hover stops) · Compare 3.0 
 | ID | What | Use | Size / type | Flow edit attaches | Source | Code fallback |
 |---|---|---|---|---|---|---|
 | V1 | Drivetrain macro loop (chain, cassette, no text) | Hero background | mp4 1920×1080, loop | — | Flow/Veo: real metal motion | Code-animated SVG chain and sprocket |
-| V2 | Wheel in a truing stand, front-on | Signature | mp4 1920×1080 → frames by video time | — | Flow/Veo: real wheel wobble can't be faked | All-SVG wheel, 32 spokes |
+| V2 | Wheel in a truing stand, front-on, steady straight spin (take 2) | Signature (settle is code, see above) | mp4 1920×1080 → frames by video time | — | Flow/Veo: real spin | All-SVG wheel, 32 spokes |
 | V3 | Slow dolly along the bench and pegboard, no people | Story | mp4 1920×1080 | — | Flow/Veo | Stills with a code push-in |
 | V4 | 3 short macro loops: brake disc, gears, tyre | Browse tiles | mp4 1280×720 ×3 | — | Flow/Veo | Stills |
 | S1 | Master bike, blank frame, no logos | Shop master, process | jpg 2400×1600 | — (the master) | Flow | Code-drawn SVG bike |
