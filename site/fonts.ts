@@ -1,2 +1,3 @@
-// Fonts for THIS site: Round 1 installs the chosen pair (npm i @fontsource-variable/<name>) and imports it here.
-export {};
+// Spokesmith: Lexend Mega (display, caps) + Public Sans (body)
+import "@fontsource-variable/lexend-mega";
+import "@fontsource-variable/public-sans";
