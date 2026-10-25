@@ -2,7 +2,7 @@
 
 # Day 28 · Spokesmith Cycle Works · design direction (Round 0)
 
-Fictional bicycle workshop: tunes, repairs, builds. Business site, desktop 1440×900 only. Sample prices in ₹, labelled "sample". Traveling object: —. Layout chosen: **A "Hi-Vis Floor"** (recommended; the user confirms in the Round 0 review). 6+ of 8 menu choices differ from each of the last 3 sites, see the sites log. Claude Code never writes Flow/Veo prompts.
+Fictional bicycle workshop: tunes, repairs, builds. Business site, desktop 1440×900 only. Sample prices in ₹, labelled "sample". Traveling object: —. Layout chosen and approved by the user: **A "Hi-Vis Floor"**, hero HR32, signature "True the Wheel". Round 0 is done; motion map, hover map, product detail plan, reel time table and asset list are approved as written. 6+ of 8 menu choices differ from each of the last 3 sites, see the sites log. Claude Code never writes Flow/Veo prompts.
 
 ## Choices
 
