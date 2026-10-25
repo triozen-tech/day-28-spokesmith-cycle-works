@@ -1,4 +1,4 @@
-import Loader from "@/components/engine/Loader";
+import Loader from "@/site/components/Loader"; // Spokesmith loader replaces the kit default
 import Cursor from "@/components/engine/Cursor";
 import SmoothScroll from "@/components/engine/SmoothScroll";
 import Animations from "@/components/engine/Animations";
@@ -11,7 +11,7 @@ import { meta } from "@/site/site";
 export default function Home() {
   return (
     <>
-      <Loader text={meta.loaderText ?? meta.name} enabled={meta.loader ?? true} />
+      <Loader enabled={meta.loader ?? true} />
       <SmoothScroll />
       <Animations />
       <RecordMode speed={meta.record?.speed} duration={meta.record?.duration} delay={meta.record?.delay} />

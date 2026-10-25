@@ -69,7 +69,11 @@ html, body { overflow-x: clip; }
   a:hover .sm-roll > span, button:hover .sm-roll > span, .is-hover .sm-roll > span { transform: translateY(-100%); }
 
   /* hero */
-  .sm-slot { display: inline-block; position: relative; overflow: hidden; background: var(--ink); color: var(--yellow); padding: 0.06em 0.2em 0.02em; box-shadow: 10px 10px 0 var(--yellow); min-width: 5.6em; }
+  .sm-slot { display: inline-block; position: relative; overflow: hidden; vertical-align: top; background: var(--yellow); color: var(--ink); box-shadow: 10px 10px 0 var(--paper); }
+  .sm-slot-word { position: absolute; left: 0; top: 0; white-space: nowrap; padding: 0.06em 0.22em 0.02em; }
+  .sm-slot-first { position: relative; display: block; }
+  .sm-tag { color: var(--yellow); }
+  .sm-tag.on { background: var(--yellow); color: var(--ink); }
 
   /* browse tile (U81 flip to the price) */
   .sm-tile { position: relative; height: 330px; border: 4px solid var(--ink); background: var(--graphite); overflow: hidden; box-shadow: var(--shadow); }
@@ -109,4 +113,11 @@ html, body { overflow-x: clip; }
   /* footer marquee */
   .sm-marquee { display: flex; width: max-content; }
   .sm-marquee > span { padding-right: 0.5em; white-space: nowrap; }
+}
+
+@layer components {
+  /* signature step rows: pending / active / done */
+  .sm-row { transition: background .2s, color .2s, opacity .2s; }
+  .sm-row[data-s="pending"] { opacity: .45; }
+  .sm-row[data-s="active"] { background: var(--yellow); color: var(--ink); }
 }

@@ -13,7 +13,7 @@ export const nav = [
 ];
 
 export const hero = {
-  words: ["TUNE", "REPAIR", "BUILD"],
+  words: ["Built.", "Trued.", "Greased.", "Fixed."],
   lead: "Every bike on the floor gets a spanner, a stand and a straight answer.",
   cta: "Book a tune",
   cta2: "See the bikes",
@@ -114,13 +114,14 @@ export const story = {
 
 export const signature = {
   eyebrow: "True the wheel",
-  title: "From wobble to true",
+  title: "Five turns to true",
   frames: "/frames/spokesmith-v2-truing",
+  start: 2.4,
   steps: [
-    { n: 1, mm: 2.4, note: "Find the wobble" },
-    { n: 2, mm: 1.6, note: "Loosen the high side" },
-    { n: 3, mm: 0.9, note: "Tighten the low side" },
-    { n: 4, mm: 0.4, note: "Quarter turns only" },
+    { n: 1, mm: 1.8, note: "Mark the high spot" },
+    { n: 2, mm: 1.1, note: "Tighten the low side" },
+    { n: 3, mm: 0.6, note: "Ease the high side" },
+    { n: 4, mm: 0.2, note: "Quarter turns only" },
     { n: 5, mm: 0.0, note: "Spins true" },
   ],
 };

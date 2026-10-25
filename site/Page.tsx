@@ -16,7 +16,6 @@ export default function Page() {
     <main>
       <Nav />
       <Hero />
-      <Tape />
       <Browse />
       <Shop />
       <Compare />

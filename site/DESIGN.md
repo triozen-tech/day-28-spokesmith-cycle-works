@@ -12,10 +12,10 @@ Fictional bicycle workshop: tunes, repairs, builds. Business site, desktop 1440�
 | Palette | Hi-vis graphite: yellow `#FFD500` (bg + accent), graphite `#2B2D2F` bands, ink `#0B0B0B` text, paper `#F4F1E6` | One accent (yellow); black on yellow and yellow on graphite both pass contrast |
 | Type pair | T28 Lexend Mega (display, caps) + Public Sans (body) | Wide, heavy and sign-like; never used before |
 | Nav | NV08 box-grid menu; hover U17 rolling letters | Opens a 6-box grid like a tool board |
-| Hero | HR32 flip-word slot (TUNE / REPAIR / BUILD) over a drivetrain loop | New to the kit's history; not a portal |
+| Hero | HR32 flip-word slot (Built. / Trued. / Greased. / Fixed.) over a drivetrain loop | New to the kit's history; not a portal |
 | Section shape | S10 stepped edges + hazard-tape joins | Hard cuts between yellow and graphite |
 | Card | C10 spec sheet, thick border, hard offset shadow | Reads like a workshop job sheet |
-| Loader | I35 block wordmark sting | Hard yellow blocks wipe in the wordmark |
+| Loader | Custom Spokesmith wheel-lace loader (replaces I35) | A bare rim draws, 32 spokes are laced in while 00 to 100 counts, the wheel spins up and hands over to the hero wheel |
 | Signature | "True the Wheel" | Natural step count and a visible change |
 
 ## Section plan and Motion map
@@ -24,9 +24,9 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 
 | # | Section | Layout | Moments | Motion | Record mode |
 |---|---|---|---|---|---|
-| 0 | Loader | I35 | 1, 14 | I35 block wordmark sting | plays once, ~2 s |
+| 0 | Loader | custom | 1, 14 | wheel-lace loader: rim draws, spokes lace in, counter 00-100, spin-up, hand-over to the hero wheel (same place and size) | plays once, ~2.5 s |
 | 0 | Nav | NV08 | — | U17 rolling letters on hover | static bar |
-| 1 | Hero | HR32 | 4, 2, 11 | M369 slot-strip shuffle on the word; V1 loops behind | plays by itself |
+| 1 | Hero | HR32 | 4, 2, 11 | flip-word slot: one headline slot flips Built. Trued. Greased. Fixed., ~1.4 s per word, yellow block behind the word; V1 loops behind; hero wheel idles at the right | plays by itself |
 | 2 | Browse (what we fix) | PS22 | 3, 4, 5, 7, 8, 9, 12 | M429 tile rows slide opposite ways; tiles loop macro films | plays by itself |
 | 3 | Shop (bikes and parts) | PS15 | 11, 12, 10 | M438 3D grid fly-in; filter chips re-sort | 2 hover stops |
 | 4 | Compare (Basic / Full / Overhaul) | PR05 | 2, 3 | M306 centre-out cut reveal | plays by itself |
@@ -40,7 +40,7 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 
 **Hero candidates:** 1 HR32 flip-word slot over a drivetrain loop (**chosen**) · 2 HR38 skewed yellow plate, a built bike rolls on · 3 HR33 job-board split-flap (code only).
 
-**Signature, True the Wheel (moments 5, 6):** pinned. Five spoke-wrench steps: 2.4, 1.6, 0.9, 0.4, 0.0 mm of wobble. The dial-gauge needle and run-out trace swing less each step, the spoke being turned lights up, and the wheel settles and spins true on 0.0. Works at any scroll speed and stays alive when stopped. **How the settle is built (chosen: film + code overlay).** V2 is a steady, straight wheel spin, so the wobble is not in the film. Five scroll steps (also auto-advancing, any scroll speed, alive when stopped) drive one value `wobble` = 2.4 → 1.6 → 0.9 → 0.4 → 0.0 mm. It feeds three code layers over the film: (1) an SVG dial gauge whose number and needle fall to 0.0; (2) a thin yellow ghost rim ring, sized to the wheel, that swings sideways by `wobble × sin(t)` with a decaying amplitude and a caliper tip marker on it, so it visibly sways against the straight film rim and locks onto it exactly (offset forced to 0) at step 5; (3) the spoke being turned lights up on each step. The film itself is never moved, so the stand and background stay still. Why not sway the film: it would slide the whole stand with it. Why not an all-SVG wheel: the real spin is the premium part. Code fallback: all-SVG wheel (32 spokes).
+**Signature, True the Wheel (moments 5, 6):** pinned. Five spoke-wrench turns: 2.4, 1.8, 1.1, 0.6, 0.2, 0.0 mm of wobble. The dial-gauge needle and run-out trace swing less each step, the spoke being turned lights up, and the wheel settles and spins true on 0.0. Works at any scroll speed and stays alive when stopped. **How the settle is built (chosen: film + code overlay).** V2 is a steady, straight wheel spin, so the wobble is not in the film. Five scroll steps (also auto-advancing, any scroll speed, alive when stopped) drive one value `wobble` = 2.4 → 1.8 → 1.1 → 0.6 → 0.2 → 0.0 mm. It feeds three code layers over the film: (1) an SVG dial gauge whose number and needle fall to 0.0; (2) a thin yellow ghost rim ring, sized to the wheel, that swings sideways by `wobble × sin(t)` with a decaying amplitude and a caliper tip marker on it, so it visibly sways against the straight film rim and locks onto it exactly (offset forced to 0) at step 5; (3) the spoke being turned lights up on each step. The film itself is never moved, so the stand and background stay still. Why not sway the film: it would slide the whole stand with it. Why not an all-SVG wheel: the real spin is the premium part. Code fallback: all-SVG wheel (32 spokes).
 
 ## Hover map
 
