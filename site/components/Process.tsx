@@ -3,7 +3,7 @@ import { process } from "../content";
 /** PD08: vertical numbered step rail, the finished bike beside it. */
 export default function Process() {
   return (
-    <section id="process" className="sm-section sm-paper" data-record-time="3.5">
+    <section id="process" className="sm-section sm-paper" data-record-time="2">
       <div className="sm-wrap grid grid-cols-[560px_1fr] gap-24">
         <div className="sticky top-28 self-start">
           <p className="sm-eyebrow mb-4">{process.eyebrow}</p>

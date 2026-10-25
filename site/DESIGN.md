@@ -74,9 +74,28 @@ Round 3 additions: shop cards lift with a hard shadow, compare rows slide a yell
 - Sticky buy box inside the quick-look panel.
 - Add-to-cart animation flying to the cart with a count bump.
 
-## Reel time table (total 37.5 s)
+## Reel time table (final, Round 4)
 
-Loader 2.0 · Hero 4.0 · Browse 3.0 · Shop 5.0 (2 hover stops) · Compare 3.0 · Book 3.5 · Story 3.0 · Signature 8.0 · Process 3.5 · Footer 2.5.
+**Final page order:** loader · nav · 1 Hero (HR32) · 2 Browse (PS22) · marquee strip · 3 Shop (PS15) · 4 Compare (PR05) · 5 Book (BK05) · 6 Story (SY09) · 7 Signature, True the Wheel (VD03, M951) · 8 Process (PD08) · 9 Footer (FO08). 9 sections plus the marquee strip; order unchanged since Round 0.
+
+`?record=1`, one smooth auto-scroll, `meta.record.duration` 34. The clock starts when the loader is gone (loader ~2.9 s), so a run is about 34 s start to end. Stops come from `data-record-time` / `data-record-hold`; the only rests are the holds below and the end.
+
+| Stop | Arrives (s) | Rests (s) | Leaves (s) | What shows |
+|---|---|---|---|---|
+| Loader | −2.9 | — | 0 | wheel-lace loader, hand-over to the hero wheel |
+| Hero | 0 | 1.5 | 1.5 | flip words, drivetrain loop |
+| Browse | 4.0 | 1.0 | 5.0 | job tiles, one tile flips to its price (hover) |
+| Marquee strip | 7.0 | — | 7.0 | BUILT / TRUED / GREASED / FIXED / RIDDEN on tape |
+| Shop | 8.0 | 1.0 | 9.0 | cards, first card hover |
+| Shop detail | 11.0 | 1.0 | 12.0 | buy box: swatch colour swap, Add to cart (click demo) |
+| Compare | 13.5 | 1.0 | 14.5 | three plans, a row fill on hover |
+| Book | 16.0 | 1.0 | 17.0 | week strip, slot chip click |
+| Story | 18.5 | 1.0 | 19.5 | bench film, chapter titles |
+| Signature | 21.0 | — | 27.0 | six seconds scrubbed: five turns, gauge to 0.0, TRUE. |
+| Process | 29.0 | — | 29.0 | step rail lights up, step 03 hover |
+| Footer | 31.5 | end | 31.5 | marquee, wordmark, "Concept website by Triozen" |
+
+Total 31.5 s of timeline plus the loader. 7 hover moments play (browse tile, shop card, swatch, Add to cart, compare row, slot chip, process step). The quick-look is never opened during the run.
 
 ## Assets (video-first: 4 films, 1 master still)
 

@@ -52,7 +52,8 @@ export default function Shop() {
   };
 
   return (
-    <section id="shop" className="sm-section sm-paper" data-record-time="5">
+    <section id="shop" className="sm-section sm-paper relative" data-record-time="1" data-record-hold="1">
+      <div aria-hidden className="pointer-events-none absolute left-0 top-[480px] h-px w-px" data-record-time="2" data-record-hold="1" data-record-label="shop-detail" />
       <div className="sm-wrap">
         <div className="mb-12 flex items-end justify-between">
           <div>

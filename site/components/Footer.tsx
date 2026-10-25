@@ -4,7 +4,7 @@ import Marquee from "./Marquee";
 /** FO08: velocity marquee on hazard tape, then the workshop details. */
 export default function Footer() {
   return (
-    <footer id="footer" className="sm-graphite relative overflow-hidden">
+    <footer id="footer" className="sm-graphite relative overflow-hidden" data-record-time="2.5">
       <div className="sm-tape sm-tape-tall" />
       <div className="border-b-4 border-[#ffd500] py-10">
         <Marquee words={footer.marquee} className="sm-display text-[170px]" base={80} boost={1100} reverse />

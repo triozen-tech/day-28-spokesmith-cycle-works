@@ -109,7 +109,7 @@ export default function Signature() {
 
   const end = signature.steps[signature.steps.length - 1];
   return (
-    <section ref={root} id="signature" className="relative h-[4200px] bg-[#2b2d2f] text-[#ffd500]" data-record-time="9">
+    <section ref={root} id="signature" className="relative h-[4200px] bg-[#2b2d2f] text-[#ffd500]" data-record-time="1.5">
       <div className="sticky top-0 h-[900px] overflow-hidden">
         <FrameScrub frames={signature.frames} stillAt={0.55} breath={0} className="absolute inset-0 h-full w-full" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(90deg, rgba(11,11,11,.7) 0%, rgba(11,11,11,0) 38%, rgba(11,11,11,0) 70%, rgba(11,11,11,.55) 100%)" }} />
@@ -172,6 +172,7 @@ export default function Signature() {
           </div>
         </div>
       </div>
+      <div aria-hidden className="pointer-events-none absolute bottom-0 left-0 h-px w-full" data-record-time="6" data-record-label="signature-end" />
     </section>
   );
 }

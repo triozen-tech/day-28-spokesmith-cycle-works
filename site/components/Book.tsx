@@ -9,7 +9,7 @@ export default function Book() {
   const [svc, setSvc] = useState(1);
   const d = book.days[day];
   return (
-    <section id="book" className="sm-section sm-graphite" data-record-time="3.5">
+    <section id="book" className="sm-section sm-graphite" data-record-time="1.5" data-record-hold="1">
       <div className="sm-wrap grid grid-cols-[520px_1fr] gap-20">
         <div>
           <p className="sm-eyebrow mb-4" data-step>{book.eyebrow}</p>

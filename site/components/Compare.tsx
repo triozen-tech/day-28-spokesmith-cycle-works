@@ -3,7 +3,7 @@ import { compare, rupee } from "../content";
 /** PR05: comparison table with a sticky header row. */
 export default function Compare() {
   return (
-    <section id="compare" className="sm-section sm-yellow" data-record-time="3">
+    <section id="compare" className="sm-section sm-yellow" data-record-time="1.5" data-record-hold="1">
       <div className="sm-wrap">
         <p className="sm-eyebrow mb-4">{compare.eyebrow}</p>
         <h2 className="sm-display mb-14 text-[84px]">{compare.title}</h2>

@@ -4,7 +4,7 @@ import { story } from "../content";
 /** SY09: sticky film stage on the left, three chapters beneath each other on the right. */
 export default function Story() {
   return (
-    <section id="story" className="sm-section sm-yellow" data-record-time="3">
+    <section id="story" className="sm-section sm-yellow" data-record-time="1.5" data-record-hold="1">
       <div className="sm-wrap">
         <p className="sm-eyebrow mb-4">{story.eyebrow}</p>
         <h2 className="sm-display mb-16 max-w-[1000px] text-[72px]">{story.title}</h2>

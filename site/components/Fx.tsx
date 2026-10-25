@@ -61,7 +61,7 @@ export default function Fx() {
         rail.dataset.armed = "";
         const fill = rail.querySelector<HTMLElement>(".sm-rail-fill");
         if (fill) gsap.fromTo(fill, { scaleY: 0 }, { scaleY: 1, ease: "none", transformOrigin: "top", scrollTrigger: { trigger: rail, start: "top 60%", end: "bottom 62%", scrub: 0.4 } });
-        $("li", rail).forEach((li) => ScrollTrigger.create({ trigger: li, start: "top 62%", toggleClass: { targets: li, className: "lit" } }));
+        $("li", rail).forEach((li) => ScrollTrigger.create({ trigger: li, start: "top 62%", onEnter: () => li.classList.add("lit"), onLeaveBack: () => li.classList.remove("lit") }));
       }
 
       // FOOTER: wordmark rises, links stagger in

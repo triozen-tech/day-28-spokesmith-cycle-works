@@ -2,12 +2,12 @@ import type { SiteMeta, Theme } from "@/lib/site";
 
 export const meta: SiteMeta = {
   name: "Spokesmith Cycle Works",
-  title: "Spokesmith Cycle Works · Tune. Repair. Build.",
-  description: "A bicycle workshop that tunes, repairs and builds. Concept website by Triozen.",
+  title: "Spokesmith Cycle Works (concept) · Tune. Repair. Build.",
+  description: "Spokesmith Cycle Works is a concept bicycle workshop that tunes, repairs and builds. All prices are samples. Concept website by Triozen.",
   loaderText: "SPOKESMITH",
   loader: true,
   cursor: false,
-  record: { duration: 38 },
+  record: { duration: 34 },
 };
 
 export const theme: Theme = {

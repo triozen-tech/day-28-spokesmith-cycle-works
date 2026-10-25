@@ -4,7 +4,7 @@ import LoopVideo from "./LoopVideo";
 /** PS22: category tile wall. Each tile flips to the job's price on hover. */
 export default function Browse() {
   return (
-    <section id="browse" className="sm-section sm-yellow" data-record-time="3">
+    <section id="browse" className="sm-section sm-yellow" data-record-time="2.5" data-record-hold="1">
       <div className="sm-wrap">
         <div className="mb-14 flex items-end justify-between">
           <div>

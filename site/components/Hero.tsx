@@ -32,17 +32,21 @@ export default function Hero() {
     gsap.set(words.slice(1), { autoAlpha: 0 });
     const mark = (i: number) => tags.forEach((t, k) => t.classList.toggle("on", k === i));
 
+    // each flip is its own one-shot timeline: a repeating timeline rewinds the first word to a hidden state on every wrap
+    let at = 0;
+    let flip: gsap.core.Timeline | null = null;
+    const step = () => {
+      const cur = words[at];
+      at = (at + 1) % n;
+      const nxt = words[at];
+      flip = gsap.timeline()
+        .to(cur, { rotationX: -90, yPercent: -25, autoAlpha: 0, duration: 0.3, ease: "power2.in" }, 0)
+        .fromTo(nxt, { rotationX: 90, yPercent: 25, autoAlpha: 0 }, { rotationX: 0, yPercent: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" }, 0.25)
+        .to(slot, { width: () => nxt.offsetWidth, duration: 0.45, ease: "power3.inOut" }, 0.1)
+        .add(() => mark(at), 0.25);
+    };
     const tl = gsap.timeline({ repeat: -1, paused: true });
-    for (let i = 0; i < n; i++) {
-      const cur = words[i];
-      const nxt = words[(i + 1) % n];
-      const at = i * STEP + 1.0; // each word holds ~1 s, then flips
-      tl.to(cur, { rotationX: -90, yPercent: -25, autoAlpha: 0, duration: 0.3, ease: "power2.in" }, at)
-        .fromTo(nxt, { rotationX: 90, yPercent: 25, autoAlpha: 0 }, { rotationX: 0, yPercent: 0, autoAlpha: 1, duration: 0.4, ease: "power3.out" }, at + 0.25)
-        .to(slot, { width: () => nxt.offsetWidth, duration: 0.45, ease: "power3.inOut" }, at + 0.1)
-        .add(() => mark((i + 1) % n), at + 0.25);
-    }
-    tl.add(() => {}, n * STEP); // pad: the loop is exactly n × STEP long
+    tl.call(step, [], 0.75).add(() => {}, STEP);
 
     const off = onSiteReady(() => tl.play());
     // pause when off screen, resume when back (only after the site is ready)
@@ -58,12 +62,13 @@ export default function Hero() {
       off2();
       io2.disconnect();
       tl.kill();
+      flip?.kill();
       bob?.kill();
     };
   }, []);
 
   return (
-    <section ref={root} id="top" className="relative h-[900px] overflow-hidden bg-[#2b2d2f] text-[#ffd500]" data-record-time="4">
+    <section ref={root} id="top" className="relative h-[900px] overflow-hidden bg-[#2b2d2f] text-[#ffd500]" data-record-time="0" data-record-hold="1.5">
       <LoopVideo src={hero.video} className="absolute inset-0 h-full w-full object-cover" />
       <div className="absolute inset-0" style={{ background: "linear-gradient(95deg, rgba(11,11,11,.9) 0%, rgba(11,11,11,.72) 45%, rgba(11,11,11,.12) 100%)" }} />
       <SpokeWheel className="absolute left-[880px] top-[200px] h-[560px] w-[560px]" />
