@@ -15,9 +15,9 @@ export default function Story() {
           </div>
           <div className="flex flex-col gap-10">
             {story.chapters.map((c) => (
-              <article key={c.n} className="sm-card p-8">
+              <article key={c.n} data-chapter className="sm-card p-8">
                 <p className="sm-display text-[56px] leading-none">{c.n}</p>
-                <h3 className="sm-display mt-5 text-[26px]">{c.h}</h3>
+                <h3 className="mt-5"><span data-flip className="sm-flip sm-display text-[26px]">{c.h}</span></h3>
                 <p className="mt-4 text-[18px] font-semibold leading-relaxed">{c.p}</p>
               </article>
             ))}

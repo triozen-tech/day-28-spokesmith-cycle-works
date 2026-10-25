@@ -19,7 +19,7 @@ export default function Nav() {
         </a>
         <div className="flex items-stretch">
           <span className="flex items-center gap-3 px-8 text-[13px] font-bold uppercase tracking-[.1em]">Open 8 to 8 · Foundry Lane</span>
-          <a href="#shop" className="flex items-center gap-3 border-l-4 px-7 font-display text-[14px] font-extrabold tracking-[.08em]" style={{ borderColor: "#0b0b0b" }}>
+          <a href="#shop" className="sm-ulink flex items-center gap-3 border-l-4 px-7 font-display text-[14px] font-extrabold tracking-[.08em]" style={{ borderColor: "#0b0b0b" }}>
             CART <span className="grid h-7 min-w-7 place-items-center bg-[#0b0b0b] px-2 text-[#ffd500]" id="sm-cart-count">{cart}</span>
           </a>
           <button type="button" className="sm-menu-btn" onClick={() => setOpen(!open)} aria-expanded={open}>
@@ -33,7 +33,7 @@ export default function Nav() {
           {nav.map((n) => (
             <a key={n.href} href={n.href} onClick={() => setOpen(false)}>
               <span className="sm-eyebrow">{n.n}</span>
-              <span className="sm-display text-[26px]">{n.label}</span>
+              <span className="sm-display sm-ulink text-[26px]">{n.label}</span>
             </a>
           ))}
         </nav>

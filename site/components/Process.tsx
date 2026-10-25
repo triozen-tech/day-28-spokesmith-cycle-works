@@ -14,8 +14,9 @@ export default function Process() {
           </div>
         </div>
         <ol className="sm-rail flex flex-col gap-12 pt-4">
-          {process.steps.map((s) => (
-            <li key={s.n} className="flex items-start gap-8">
+          <span className="sm-rail-fill" aria-hidden />
+          {process.steps.map((s, i) => (
+            <li key={s.n} className="sm-step flex items-start gap-8" data-hover-demo={i === 2 ? "" : undefined}>
               <span className="sm-node">{s.n}</span>
               <div className="sm-card flex-1 p-6">
                 <h3 className="sm-display text-[24px]">{s.h}</h3>

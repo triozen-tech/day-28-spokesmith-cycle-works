@@ -36,7 +36,15 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 | 8 | Process (frame to finished) | PD08 | 11, 13, 10, 14 | M457 path draws, milestones pop | plays by itself |
 | 9 | Footer | FO08 | 15 | M397 velocity marquee on hazard tape | marquee runs |
 
-**Transitions (X, finalised in Round 3):** hero→browse X34 kinetic type wipe · browse→shop X31 slit-open · compare→book X56 skewed clip · story→signature X33 chapter scale jump · signature→process X60 split halves.
+**Round 3 section motion (built, all scroll or view-entry, `Fx.tsx`):** Browse tiles slide up in a stagger and the V4 loops play only while their tile is on screen · Shop cards roll in from the left one by one, swatches wheel-spin in, a swatch click swaps the colour with a yellow wipe · Compare columns slide in from opposite sides, ticks pop, the Full column flashes yellow once · Book fields step in, day cells rise, slot chips pop with a bounce, confirm button has a hazard-tape sweep on hover · Story chapter titles flip in (flip-word style), lines fade up · Process steps light up one by one with a chain-pattern progress line scrubbed by scroll · Footer wordmark rises, links stagger in, footer marquee speeds up with scroll.
+
+**Marquee strip (between Browse and Shop):** graphite words BUILT / TRUED / GREASED / FIXED / RIDDEN on yellow, hazard tape top and bottom, runs on its own and speeds up with scroll speed (M397-style velocity marquee).
+
+**Section edges:** S10 stepped edges at story→signature and signature→process; hazard tape stays on the hero bottom, the marquee strip and the footer.
+
+**Transitions (X, built, each under 0.6 s, never blocks scroll):** hero→browse X34 kinetic "JOBS" type wipe · browse/marquee→shop tape-strip sweep · compare→book X56 skewed yellow panel · story→signature X33 wheel-rim scale jump · signature→process X60 split halves.
+
+**Quick-look (shop):** clicking a bike card opens a modal with a dimmed backdrop (close with X, Esc or a backdrop click): photo, 3 specs, sample price and an "Add to build" button.
 
 **Hero candidates:** 1 HR32 flip-word slot over a drivetrain loop (**chosen**) · 2 HR38 skewed yellow plate, a built bike rolls on · 3 HR33 job-board split-flap (code only).
 
@@ -54,7 +62,9 @@ Order follows the standing rule. 9 sections plus loader and nav. No layout or mo
 | Primary button | U97 glint swipe | — |
 | Nav item | U17 rolling letters | — |
 
-5 `data-hover-demo` moments (rule: ≥ 3). Each U code is used once.
+Round 3 additions: shop cards lift with a hard shadow, compare rows slide a yellow fill in, process steps light and lift, nav links get a yellow underline slide (`sm-ulink`), buttons get the hazard-tape sweep (`sm-tape-sweep`). 7 `data-hover-demo` marks (rule: ≥ 3); `?record=1` plays them (browse, shop, compare, process confirmed).
+
+5 originally planned `data-hover-demo` moments (rule: ≥ 3). Each U code is used once.
 
 ## Product detail plan (picks: ours / pending inbox)
 

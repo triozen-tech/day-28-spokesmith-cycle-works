@@ -12,7 +12,12 @@ export default function LoopVideo({ src, className = "", still = 1.2, style }: {
       const seek = () => { v.pause(); v.currentTime = still; };
       v.addEventListener("loadeddata", seek, { once: true });
       if (v.readyState >= 2) seek();
-    } else v.play().catch(() => {});
+      return;
+    }
+    // plays when it enters view, pauses when it leaves
+    const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) v.play().catch(() => {}); else v.pause(); }, { threshold: 0.15 });
+    io.observe(v);
+    return () => io.disconnect();
   }, [still]);
   return (
     <video ref={ref} className={className} style={style} muted loop playsInline preload="auto" aria-hidden>

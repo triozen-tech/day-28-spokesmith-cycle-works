@@ -15,8 +15,12 @@ export default function Hero() {
   const root = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    if (prefersReducedMotion()) return;
     const el = root.current!;
+    if (prefersReducedMotion()) {
+      // ?static=1: one fixed word ("Trued."), the others hidden
+      el.querySelectorAll<HTMLElement>("[data-word]").forEach((w, i) => { w.style.visibility = i === 0 ? "visible" : "hidden"; });
+      return;
+    }
     const slot = el.querySelector<HTMLElement>("[data-slot]")!;
     const words = [...el.querySelectorAll<HTMLElement>("[data-word]")];
     const tags = [...el.querySelectorAll<HTMLElement>("[data-tag]")];

@@ -1,5 +1,5 @@
 "use client";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { rupee, shop, type Bike } from "../content";
 
 /** PS15: filter sidebar + product grid, with a sticky buy box (swatches, sizes, loupe, add to cart). */
@@ -9,14 +9,34 @@ export default function Shop() {
   const [colour, setColour] = useState(-1); // -1 = the photographed yellow
   const [size, setSize] = useState("M");
   const [added, setAdded] = useState(false);
+  const [shown, setShown] = useState(-1); // the colour on screen (it swaps half-way through the wipe)
+  const [wipe, setWipe] = useState(0);
+  const [look, setLook] = useState<Bike | null>(null); // the quick-look pop-up
   const lens = useRef<HTMLDivElement>(null);
   const stage = useRef<HTMLDivElement>(null);
 
   const items = shop.items.filter((i) => filter === "All" || i.kind === filter);
   const isFoundry = sel.id === "S1";
-  const colourImg = colour >= 0 && isFoundry ? shop.colours[colour].img : null;
+  const colourImg = shown >= 0 && isFoundry ? shop.colours[shown].img : null;
   const mainImg = colourImg ?? (isFoundry ? "/images/spokesmith/s1-bike.png" : sel.img);
   const cutout = !!colourImg || isFoundry;
+
+  const pick = (i: number) => {
+    if (i === colour) return;
+    setColour(i);
+    setWipe((k) => k + 1);
+    setTimeout(() => setShown(i), 190);
+  };
+  const choose = (b: Bike) => { setSel(b); setColour(-1); setShown(-1); };
+
+  // quick-look: Esc closes, the page stops scrolling behind it
+  useEffect(() => {
+    if (!look) return;
+    const esc = (e: KeyboardEvent) => e.key === "Escape" && setLook(null);
+    window.addEventListener("keydown", esc);
+    window.__lenis?.stop();
+    return () => { window.removeEventListener("keydown", esc); window.__lenis?.start(); };
+  }, [look]);
 
   const move = (e: React.MouseEvent) => {
     const s = stage.current, l = lens.current;
@@ -52,7 +72,7 @@ export default function Shop() {
 
           <div className="grid grid-cols-3 gap-6">
             {items.map((b, i) => (
-              <article key={b.id} className="sm-card sm-pcard cursor-pointer" onClick={() => { setSel(b); setColour(-1); }} data-hover-demo={i === 0 ? "" : undefined}>
+              <article key={b.id} className="sm-card sm-pcard cursor-pointer" onClick={() => { choose(b); setLook(b); }} data-hover-demo={i === 0 ? "" : undefined}>
                 <div className="sm-pcard-img"><img src={b.img} alt={b.alt} /><span className="sm-eyebrow absolute left-0 top-0 border-b-4 border-r-4 border-[#0b0b0b] bg-[#ffd500] px-3 py-1.5">{b.id}</span></div>
                 <div className="p-4">
                   <p className="sm-eyebrow text-[11px]">{b.tag}</p>
@@ -69,10 +89,11 @@ export default function Shop() {
           <aside className="sticky top-24 border-4 border-[#0b0b0b] bg-[#ffd500] shadow-[8px_8px_0_#0b0b0b]">
             <div ref={stage} className="relative h-[190px] overflow-hidden border-b-4 border-[#0b0b0b]" onMouseMove={move} onMouseLeave={() => lens.current && (lens.current.style.opacity = "0")} data-cursor="Zoom">
               <img src={mainImg} alt={sel.alt} className={`h-full w-full ${cutout ? "object-contain p-3" : "object-cover"}`} style={cutout ? { background: "#f4f1e6" } : undefined} />
+              {wipe > 0 && <span key={wipe} className="sm-wipe" aria-hidden />}
               <div ref={lens} className="sm-loupe" />
             </div>
             <div className="p-4">
-              <p className="sm-eyebrow">Quick look · {sel.id}</p>
+              <p className="sm-eyebrow">Your build · {sel.id}</p>
               <h3 className="sm-display mt-2 text-[24px]">{sel.name}</h3>
               <p className="mt-2 text-[22px] font-extrabold">{rupee(sel.price)} <small className="text-[13px] font-semibold">sample price</small></p>
               <ul className="mt-2 text-[14px] font-semibold">{sel.specs.slice(0, 2).map((s) => <li key={s} className="border-t-2 border-[#0b0b0b] py-1.5">{s}</li>)}</ul>
@@ -80,9 +101,9 @@ export default function Shop() {
                 <div className="mt-3">
                   <p className="sm-eyebrow mb-2">Frame colour</p>
                   <div className="flex gap-3">
-                    <button type="button" aria-label="Yellow" className={`sm-swatch ${colour === -1 ? "on" : ""}`} style={{ background: "#ffd500", outline: "2px solid #0b0b0b", outlineOffset: -6 }} onClick={() => setColour(-1)} />
+                    <button type="button" aria-label="Yellow" className={`sm-swatch ${colour === -1 ? "on" : ""}`} style={{ background: "#ffd500", outline: "2px solid #0b0b0b", outlineOffset: -6 }} onClick={() => pick(-1)} />
                     {shop.colours.map((c, i) => (
-                      <button key={c.name} type="button" aria-label={c.name} className={`sm-swatch ${colour === i ? "on" : ""}`} style={{ background: c.hex }} onClick={() => setColour(i)} data-hover-demo={i === 1 ? "click" : undefined} />
+                      <button key={c.name} type="button" aria-label={c.name} className={`sm-swatch ${colour === i ? "on" : ""}`} style={{ background: c.hex }} onClick={() => pick(i)} data-hover-demo={i === 1 ? "click" : undefined} />
                     ))}
                   </div>
                 </div>
@@ -99,6 +120,22 @@ export default function Shop() {
           </aside>
         </div>
       </div>
+
+      {look && (
+        <div className="sm-modal" role="dialog" aria-modal="true" aria-label={`${look.name} quick look`} onClick={() => setLook(null)}>
+          <div className="sm-modal-panel" onClick={(e) => e.stopPropagation()}>
+            <button type="button" className="sm-modal-x" aria-label="Close" onClick={() => setLook(null)} autoFocus>✕</button>
+            <div className="sm-modal-photo"><img src={look.img} alt={look.alt} /><span className="sm-eyebrow absolute left-0 top-0 border-b-4 border-r-4 border-[#0b0b0b] bg-[#ffd500] px-3 py-1.5">{look.id}</span></div>
+            <div className="flex flex-col p-8">
+              <p className="sm-eyebrow">Quick look · {look.tag}</p>
+              <h3 className="sm-display mt-3 text-[34px]">{look.name}</h3>
+              <ul className="mt-6 text-[18px] font-semibold">{look.specs.slice(0, 3).map((s) => <li key={s} className="border-t-4 border-[#0b0b0b] py-3">{s}</li>)}</ul>
+              <p className="mt-auto pt-6 text-[32px] font-extrabold">{rupee(look.price)} <small className="text-[14px] font-semibold">sample price</small></p>
+              <button type="button" className="sm-btn sm-ink mt-4 w-full justify-center" onClick={() => { window.dispatchEvent(new Event("sm:cart")); setLook(null); }}>Add to build</button>
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }

@@ -12,6 +12,8 @@ export const nav = [
   { label: "Process", href: "#process", n: "06" },
 ];
 
+export const marquee = { words: ["Built", "Trued", "Greased", "Fixed", "Ridden"] };
+
 export const hero = {
   words: ["Built.", "Trued.", "Greased.", "Fixed."],
   lead: "Every bike on the floor gets a spanner, a stand and a straight answer.",
